@@ -2,63 +2,63 @@ import re
 
 
 # # lexical analysis
-# class Token:
-#     def __init__(self, token_type, value):
-#         self.type = token_type
-#         self.value = value
-#
-# class Lexer:
-#     def __init__(self, source_code):
-#         self.source_code = source_code
-#         self.position = 0
-#         self.tokens = []
-#
-#     def tokenize(self):
-#         while self.position < len(self.source_code):
-#             char = self.source_code[self.position]
-#
-#             if char.isspace():
-#                 self.position += 1
-#             elif char.isalpha():
-#                 identifier = self.extract_identifier()
-#                 self.tokens.append(Token("IDENTIFIER", identifier))
-#             elif char.isdigit():
-#                 number = self.extract_number()
-#                 self.tokens.append(Token("NUMBER", number))
-#             elif char == '+':
-#                 self.tokens.append(Token("PLUS", char))
-#                 self.position += 1
-#             elif char == '-':
-#                 self.tokens.append(Token("MINUS", char))
-#                 self.position += 1
-#             elif char == '=':
-#                 self.tokens.append(Token("ASSIGN", char))
-#                 self.position += 1
-#             else:
-#                 raise ValueError(f"Unexpected character: {char}")
-#
-#         return self.tokens
-#
-#     def extract_identifier(self):
-#         identifier = ""
-#         while self.position < len(self.source_code) and self.source_code[self.position].isalnum():
-#             identifier += self.source_code[self.position]
-#             self.position += 1
-#         return identifier
-#
-#     def extract_number(self):
-#         number = ""
-#         while self.position < len(self.source_code) and self.source_code[self.position].isdigit():
-#             number += self.source_code[self.position]
-#             self.position += 1
-#         return int(number)
-#
-# # Example usage:
-# source_code = "x = 42 + y"
-# lexer = Lexer(source_code)
-# tokens = lexer.tokenize()
-# for token in tokens:
-#     print(f"Type: {token.type}, Value: {token.value}")
+class Token:
+    def __init__(self, token_type, value):
+        self.type = token_type
+        self.value = value
+
+class Lexer:
+    def __init__(self, source_code):
+        self.source_code = source_code
+        self.position = 0
+        self.tokens = []
+
+    def tokenize(self):
+        while self.position < len(self.source_code):
+            char = self.source_code[self.position]
+
+            if char.isspace():
+                self.position += 1
+            elif char.isalpha():
+                identifier = self.extract_identifier()
+                self.tokens.append(Token("IDENTIFIER", identifier))
+            elif char.isdigit():
+                number = self.extract_number()
+                self.tokens.append(Token("NUMBER", number))
+            elif char == '+':
+                self.tokens.append(Token("PLUS", char))
+                self.position += 1
+            elif char == '-':
+                self.tokens.append(Token("MINUS", char))
+                self.position += 1
+            elif char == '=':
+                self.tokens.append(Token("ASSIGN", char))
+                self.position += 1
+            else:
+                raise ValueError(f"Unexpected character: {char}")
+
+        return self.tokens
+
+    def extract_identifier(self):
+        identifier = ""
+        while self.position < len(self.source_code) and self.source_code[self.position].isalnum():
+            identifier += self.source_code[self.position]
+            self.position += 1
+        return identifier
+
+    def extract_number(self):
+        number = ""
+        while self.position < len(self.source_code) and self.source_code[self.position].isdigit():
+            number += self.source_code[self.position]
+            self.position += 1
+        return int(number)
+
+# Example usage:
+source_code = "x = 42 + y"
+lexer = Lexer(source_code)
+tokens = lexer.tokenize()
+for token in tokens:
+    print(f"Type: {token.type}, Value: {token.value}")
 
 
 
